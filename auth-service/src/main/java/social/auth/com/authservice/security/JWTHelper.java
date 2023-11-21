@@ -6,7 +6,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
-import social.auth.com.authservice.Utils.Contants;
+import social.auth.com.authservice.utils.Constant;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ public class JWTHelper {
 
     // Retrieving any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(Contants.JWT_SECRET).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(Constant.JWT_SECRET).parseClaimsJws(token).getBody();
     }
 
     //check if the token has expired
@@ -53,8 +53,8 @@ public class JWTHelper {
     private String doGenerateToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + Contants.JWT_TOKEN_VALIDITY * 1000))
-                .signWith(SignatureAlgorithm.HS512, Contants.JWT_SECRET).compact();
+                .setExpiration(new Date(System.currentTimeMillis() + Constant.JWT_TOKEN_VALIDITY * 1000))
+                .signWith(SignatureAlgorithm.HS512, Constant.JWT_SECRET).compact();
     }
 
     // Validate token
