@@ -1,10 +1,20 @@
 package social.auth.com.authservice.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import social.auth.com.authservice.model.User;
 
-public interface UserService  {
+import java.util.List;
+import java.util.Optional;
 
-    UserDetails getUserByUsername(String username);
+public interface UserService {
+    Optional<User> findById(Long id);
+
+    Optional<User> findByUsername(String username);
+
+    User findByEmail(String email);
+
+    void save(User user);
+
+    User createUser(String username, String email,  String password, List<String> roles);
+
 
 }

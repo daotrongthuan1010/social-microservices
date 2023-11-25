@@ -1,8 +1,7 @@
 package social.auth.com.authservice.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 import social.auth.com.authservice.model.security.UserRole;
@@ -12,6 +11,8 @@ import java.util.Set;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @Table(name = "user")
 public class User {
 
@@ -21,15 +22,21 @@ public class User {
     private Long id;
 
     private String username;
+
     private String password;
-    private String hoTen;
+
+    private String fullName;
+
     private  String imgAvatar;
+
     @Transient
     private String confirmPassword;
 
     private String numberPhone;
+
     @Transient
     private MultipartFile file;
+
     @Transient
     private String passwordConfirm;
 
@@ -39,5 +46,10 @@ public class User {
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
+    public User() {
 
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+    }
 }
