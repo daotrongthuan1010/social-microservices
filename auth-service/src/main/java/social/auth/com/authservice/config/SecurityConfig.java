@@ -21,11 +21,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // configuration
+
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth->auth.requestMatchers("/home/**").authenticated()
-                        .requestMatchers("/auth/login").permitAll().anyRequest()
+                        .requestMatchers("/api/user/**").permitAll().anyRequest()
                         .authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

@@ -1,15 +1,13 @@
 package social.auth.com.authservice.model.security;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 import social.auth.com.authservice.model.User;
 
 @Entity
-@Getter
-@Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Table(name="user_role")
 public class UserRole {
 
@@ -18,17 +16,16 @@ public class UserRole {
     private Long userRoleId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id", referencedColumnName="id")
     private User user;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="role_id")
+    @JoinColumn(name="role_id", referencedColumnName="id")
     private Role role;
 
-    public UserRole() {
-
-    }
-
     public UserRole(User user, Role role) {
+        this.role = role;
+        this.user = user;
     }
 }

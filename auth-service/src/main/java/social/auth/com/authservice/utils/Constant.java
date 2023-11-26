@@ -8,4 +8,8 @@ public class Constant {
     // Generate secret
     public static final String JWT_SECRET = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
 
+    public static final String USER_NOTFOUND = "Username không tồn tại, vui lòng thử lại";
+
+
+
 }

@@ -7,6 +7,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 @Configuration
 @RequiredArgsConstructor
@@ -21,4 +24,15 @@ public class AppConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
         return builder.getAuthenticationManager();
     }
+
+//    @Bean
+//    public Validator validator() {
+//        return new LocalValidatorFactoryBean();
+//    }
+//
+//    @Bean
+//    public MethodValidationPostProcessor methodValidationPostProcessor() {
+//        return new MethodValidationPostProcessor();
+//    }
+
 }

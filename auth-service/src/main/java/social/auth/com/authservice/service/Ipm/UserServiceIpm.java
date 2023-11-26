@@ -21,15 +21,12 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class UserServiceIpm implements UserService {
-
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
 
     @Override
     public Optional<User> findById(Long id) {
-        Optional<User> opt = userRepository.findById(id);
-        return opt;
+        return userRepository.findById(id);
     }
 
     @Override
@@ -37,62 +34,53 @@ public class UserServiceIpm implements UserService {
         return userRepository.findByUsername(username);
     }
 
-
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
-    }
-
-    @Override
     @Transactional
     public User createUser(String username, String password, String email, List<String> roles) {
-        Optional<User> existingUser = findByUsername(username);
+        return findByUsername(username)
+                .map(existingUser -> updateUser(password, email, roles))
+                .orElseGet(() -> createNewUser(username, password, email, roles));
+    }
 
-        if (existingUser.isPresent()) {
-            // User already exists, update its information
-            User user = existingUser.get();
-            User.builder().password(new BCryptPasswordEncoder().encode(password))
-            .email(email).build();
+    private User updateUser(String password, String email, List<String> roles) {
 
-            Set<UserRole> userRoles = new HashSet<>();
-            for (String roleName : roles) {
-                Role role = roleRepository.findByName(roleName);
-                if (role == null) {
-                    role = new Role();
-                    role.setName(roleName);
-                    roleRepository.save(role);
-                }
-                userRoles.add(new UserRole(user, role));
+        User user = User.builder()
+                .password(new BCryptPasswordEncoder().encode(password))
+                .email(email)
+                .build();
+
+        updateRoles(user, roles);
+
+        return userRepository.save(user);
+    }
+
+    private User createNewUser(String username, String password, String email, List<String> roles) {
+        User newUser = User.builder()
+                .username(username)
+                .password(new BCryptPasswordEncoder().encode(password))
+                .email(email)
+                .build();
+
+        updateRoles(newUser, roles);
+        return userRepository.save(newUser);
+    }
+
+    private void updateRoles(User user, List<String> roles) {
+        Set<UserRole> userRoles = new HashSet<>();
+        for (String roleName : roles) {
+            Role role = roleRepository.findByName(roleName);
+            if (role == null) {
+                role = new Role();
+                role.setName(roleName);
+                roleRepository.save(role);
             }
-
-            user.setUserRoles(userRoles);
-            return userRepository.save(user);
-        } else {
-            // User does not exist, create a new user
-            User newUser = User.builder()
-                    .username(username)
-                    .password(new BCryptPasswordEncoder().encode(password))
-                    .email(email)
-                    .build();
-
-            Set<UserRole> userRoles = new HashSet<>();
-            for (String roleName : roles) {
-                Role role = roleRepository.findByName(roleName);
-                if (role == null) {
-                    role = new Role();
-                    role.setName(roleName);
-                    roleRepository.save(role);
-                }
-                userRoles.add(new UserRole(newUser, role));
-            }
-
-            newUser.setUserRoles(userRoles);
-            return userRepository.save(newUser);
+            userRoles.add(new UserRole(user, role));
         }
+        user.setUserRoles(userRoles);
     }
 }

@@ -5,10 +5,14 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class JwtRequest {
+public class UserRequest {
 
     private final String username;
 
     private final String password;
+
+    private final String email;
+
+    private final String role;
 
 }

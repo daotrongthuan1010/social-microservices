@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+
+  mysql-db:
+    image: mysql:8.0.30
+    container_name: mysql-container
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mk123654
+      MYSQL_DATABASE: test
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  postgresql-db:
+    image: postgres:latest
+    container_name: postgres-container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pgpassword
+      POSTGRES_DB: test
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  spring-app:
+    build: .
+    image: springboot:tag
+    container_name: spring-app-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+      - postgresql-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/test?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mk123654
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
+      SPRING_JPA_SHOW-SQL: "true"
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
+volumes:
+  mysql_data:
+  postgres_data:
