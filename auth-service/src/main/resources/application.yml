@@ -11,6 +11,7 @@ spring:
   cloud:
     config:
       enabled: false
+apiUrl: "https://provinces.open-api.vn/api/d/search/";
 
 
 

@@ -1,8 +1,8 @@
 package social.auth.com.authservice.service;
 
+import social.auth.com.authservice.apirequest.UserRequest;
 import social.auth.com.authservice.model.User;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -13,7 +13,7 @@ public interface UserService {
     User findByEmail(String email);
 
 
-    User createUser(String username, String email,  String password, List<String> roles);
+    Optional<User> createOrUpdateUser(UserRequest userRequest);
 
 
 }

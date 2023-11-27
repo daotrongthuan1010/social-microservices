@@ -34,6 +34,8 @@ public class User {
 
     private String numberPhone;
 
+    private String address;
+
     @Transient
     private MultipartFile file;
 
