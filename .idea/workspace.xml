@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9d7c853-54e2-44dd-a0b6-39c246202029" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/repository/adnet/AddressRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/repository/adnet/repositoryIpm/AddressRepositoryIpm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/repository/adnet/response/CityResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/repository/adnet/response/DistrictResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/apirequest/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/apirequest/UserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/config/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/service/Ipm/UserServiceIpm.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/service/Ipm/UserServiceIpm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/utils/ContentMessageConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/social/auth/com/authservice/utils/ContentMessageConstant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

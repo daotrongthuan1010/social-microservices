@@ -28,8 +28,6 @@ public class UserController {
 
     private final UserService userService;
 
-    private final UserSecurityService userSecurityService;
-
     @PostMapping("/createOrUpDate")
     public ResponseEntity<String> index(@RequestBody UserRequest userRequest){
         userService.createOrUpdateUser(userRequest);
