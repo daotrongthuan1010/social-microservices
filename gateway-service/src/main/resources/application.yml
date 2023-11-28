@@ -1,6 +1,18 @@
+server:
+  port: 8080
 spring:
-  security:
-    oauth2:
-      resource-server:
-        jwt:
-          issuer-uri: http://auth-service-uri/.well-known/openid-configuration
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: auth-route
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/(?<segment>.*), /${segment}
+      global-cors:
+        cors-configurations:
+          default:
+            allowed-headers: Cookie,Set-Cookie
